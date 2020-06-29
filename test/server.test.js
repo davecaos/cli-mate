@@ -13,13 +13,28 @@ describe('Sample Test', () => {
     expect(response.statusCode).toBe(200);
    });
 
-   test('Status OK', async () => {
-    const response = await request(app).get('/v1/current/A');
+  test('Location OK', async () => {
+    const response = await request(app).get('/v1/location');
+    expect(response.statusCode).toBe(200);
+    expect(response.body.city).toBe('Buenos Aires')
+   });
+
+  test('Current local weather OK', async () => {
+    const response = await request(app).get('/v1/current/Buenos Aires');
     expect(response.statusCode).toBe(200);
    });
 
+   test('Current weather by city OK', async () => {
+    const response = await request(app).get('/v1/current/Buenos Aires');
+    expect(response.statusCode).toBe(200);
+   });
 
-   test('forecast OK', async () => {
-    const response = await request(app).get('/v1/forecast/A ');
+   test('local forecast OK', async () => {
+    const response = await request(app).get('/v1/forecast/');
+    expect(response.statusCode).toBe(200);
+   });
+
+   test('forecast weather by city OK', async () => {
+    const response = await request(app).get('/v1/forecast/Buenos Aires');
     expect(response.statusCode).toBe(200);
    });
