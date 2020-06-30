@@ -15,4 +15,11 @@ async function currentWeatherByCity(city) {
             });
 }
 
-module.exports.currentWeatherByCity = currentWeatherByCity;
+function currentLocalWeather(req, res) {
+    let ip = req.headers.ClimateClientIP;
+    locationCityByIP(ip).then( city => currentWeatherByCity(city).then( response => res.send(response)))
+ }
+ 
+
+module.exports.currentWeatherByCity =  currentWeatherByCity;
+module.exports.currentLocalWeather = currentLocalWeather;

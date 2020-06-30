@@ -10,11 +10,9 @@ function currentWeatherGet (req, res) {
 
 function currentWeatherLocalGet (req, res) {
    let ip = req.headers.ClimateClientIP
-   let city = locationCityByIP(ip)
-   currentWeatherByCity(city).then( response => res.send(response))
+   locationCityByIP(ip).then(result => currentWeatherByCity(result.city).then( response => res.send(response)))
+   
 }
 
-
-
-module.exports.currentWeatherGet = currentWeatherGet;
-
+module.exports.currentWeatherGet =  currentWeatherGet;
+module.exports.currentWeatherLocalGet =  currentWeatherLocalGet;

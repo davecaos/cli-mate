@@ -1,9 +1,10 @@
 const express = require('express');
 
-const {locationGet} = require('./handlers/locations')
-const {currentWeatherGet} = require('./handlers/current')
+const locationGet = require('./handlers/locations').location
+const {currentWeatherLocalGet, currentWeatherGet} = require('./handlers/current')
+const {forecastWeatherGet, forecastWeatherLocalGet } = require('./handlers/forecast')
 
-let router = express.Router();
+var router = express.Router();
 
 function setClientIpOnHeaderMiddleware(req, _res, next){ 
   let ip =  req.headers['x-forwarded-for'] || 
@@ -11,22 +12,24 @@ function setClientIpOnHeaderMiddleware(req, _res, next){
             req.socket.remoteAddress ||
             '127.0.0.1';
 
-   req.headers['ClimateClientIP'] = ip
-   next();
+  if (ip.substr(0, 7) === "::ffff:") {
+      ip = ip.substr(7)
+  }
+  req.headers['ClimateClientIP'] = ip
+  next();
 }
 
+//Middleware
 router.use('/location', setClientIpOnHeaderMiddleware);
-router.get('/location', locationGet);
-
 router.use('/current', setClientIpOnHeaderMiddleware);
-router.get('/current/', currentWeatherGet);
+router.use('/forecast', setClientIpOnHeaderMiddleware);
+
+//Routes
+router.get('/location', locationGet);
+router.get('/current/', currentWeatherLocalGet);
 router.get('/current/:city', currentWeatherGet);
 
-router.get('/forecast/', function (req, res) {
-  res.send({})
-})
-router.get('/forecast/:city', function (req, res) {
-    res.send({})
-})
+router.get('/forecast/', forecastWeatherLocalGet)
+router.get('/forecast/:city', forecastWeatherGet);
 
 module.exports = router;

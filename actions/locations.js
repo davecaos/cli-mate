@@ -1,14 +1,11 @@
 const axios = require('axios');
 
 const localhostIP4 = '127.0.0.1';
-const localhostIP6 = '::1';
-const isLocalhost = (ip) => (ip === localhostIP4 || ip === localhostIP6);
+const localhostIP6 = "::1";
+const isLocalhost = (ip) => (ip == localhostIP4 || ip == localhostIP6);
 
 function buildIpApiUrl(ip) {
-    if (ip.substr(0, 7) === "::ffff:") {
-        ip = ip.substr(7)
-    }
-
+    
     if( isLocalhost(ip) ){
         return 'https://ipapi.co/json';
     }
