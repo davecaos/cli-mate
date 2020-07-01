@@ -5,24 +5,28 @@ const localhostIP6 = "::1";
 const isLocalhost = (ip) => (ip == localhostIP4 || ip == localhostIP6);
 
 function buildIpApiUrl(ip) {
-    
+
     if( isLocalhost(ip) ){
         return 'https://ipapi.co/json';
     }
-
     return 'https://ipapi.co/'+ ip +'/json';
 }
 
 async function locationCityByIP(ip) {
-    return  axios.get(buildIpApiUrl(ip))
+    let url = buildIpApiUrl(ip)
+    return axios.get(url)
                 .then(function(response) {
                     let city = response.data.city;
-                    return {city} ;
+                    return {city};
                 })
-                .catch(function(err) {
-                    console.error(err);
+                .catch(function (error) {
+                    throw error;
                 });
 }
 
-module.exports.locationCityByIP = locationCityByIP;
+module.exports = {
+    locationCityByIP: async (ip) => {
+        return await locationCityByIP(ip);
+    }
+};
 

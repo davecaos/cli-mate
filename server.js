@@ -6,9 +6,7 @@ app = express();
 
 app.use(express.static('public'));
 
-app.get('/status', function (req, res) {
-    res.send({ status: 'ok' })
-})
+app.get('/status',  (req, res) => res.send({ status: 'ok' }))
 
 app.use('/v1', router)
 

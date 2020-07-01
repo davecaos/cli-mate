@@ -5,21 +5,23 @@ function buildIpApiUrl(city) {
     return 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + OpenWeatherAPIKey;
 }
 
+function formatWeatherresponse(rawResponse) {
+    let {weather, name} = rawResponse;
+    return {weather, city: name};
+}
+
 async function currentWeatherByCity(city) {
     return axios.get(buildIpApiUrl(city))
             .then(function(response) {
-                return response.data ;
+                return formatWeatherresponse(response.data) ;
             })
             .catch(function(err) {
                 console.error(err);
             });
 }
 
-function currentLocalWeather(req, res) {
-    let ip = req.headers.ClimateClientIP;
-    locationCityByIP(ip).then( city => currentWeatherByCity(city).then( response => res.send(response)))
- }
- 
-
-module.exports.currentWeatherByCity =  currentWeatherByCity;
-module.exports.currentLocalWeather = currentLocalWeather;
+module.exports = {
+    currentWeatherByCity: async (city) => {
+        return await currentWeatherByCity(city);
+    }
+};

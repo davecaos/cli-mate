@@ -1,12 +1,17 @@
 let {locationCityByIP} = require('../actions/locations')
 
 
-function locationGet (req, res) {
+async function locationGet (req, res) {
   let ip = req.headers.ClimateClientIP
-  locationCityByIP(ip)
-  .then( 
-    response => res.send(response)
-  )
+  try {
+    let cityResponse = await locationCityByIP(ip)
+    res.send(cityResponse)
+  }
+  catch(err){
+    return res.status(503).send({
+      message: 'Location 3rd party source is unavailable'
+   });
+  }
 }
 
 
