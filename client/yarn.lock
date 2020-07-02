@@ -7227,6 +7227,11 @@ onetime@^5.1.0:
   dependencies:
     mimic-fn "^2.1.0"
 
+open-weather-icons@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/open-weather-icons/-/open-weather-icons-0.0.8.tgz#32134478e0d006239d09ae9ee7057926a01f6de7"
+  integrity sha512-9/ic3bOM5rF+4FXMXIWjroE+b5oz2CdEkyN8066nTy7i0QFeyJQwYyriZ4NaVPThcxN968OplNxdeLnJKQVQ5Q==
+
 open@^7.0.2:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/open/-/open-7.0.3.tgz#db551a1af9c7ab4c7af664139930826138531c48"

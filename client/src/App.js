@@ -17,13 +17,17 @@ class App extends React.Component {
   
   componentDidMount() {
 
-    API.get("/location")
+    API.get("/current")
       .then(res => res.data)
       .then(
         (result) => {
+          let [currentWeather] = result.weather
           this.setState({
             isLoaded: true,
-            city: result.city
+            city: result.city,
+            main: currentWeather.main,
+            description: currentWeather.description,
+            iconID: currentWeather.id
           });
         },
 
@@ -40,9 +44,13 @@ class App extends React.Component {
     return (
     <div className="App">
       <header className="App-header">
-        <a>
+
+        <i class={`owf owf-${this.state.iconID}`  + " owf-2x owf-pull-left owf-border"}></i>
+        <p>
           {this.state.city}
-        </a>
+         <br/>
+         {this.state.description + ' (' + this.state.main + ')'}
+         </p>
       </header>
     </div>);
 }
