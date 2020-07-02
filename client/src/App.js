@@ -10,7 +10,7 @@ class App extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      city: ''
+      currentCity: ''
     };
   }
 
@@ -20,11 +20,35 @@ class App extends React.Component {
     API.get("/current")
       .then(res => res.data)
       .then(
-        (result) => {
-          let [currentWeather] = result.weather
+        (data) => {
+          let [currentWeather] = data.weather
           this.setState({
             isLoaded: true,
-            city: result.city,
+            currentCity: data.city,
+            main: currentWeather.main,
+            description: currentWeather.description,
+            iconID: currentWeather.id
+          });
+        },
+
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+
+      API.get("/forecast")
+      .then(res => res.data)
+      .then(
+        (data) => {
+          let [currentWeather] = data
+          currentWeather = currentWeather.weather[0]
+
+          this.setState({
+            isLoaded: true,
+            currentCity: data.city,
             main: currentWeather.main,
             description: currentWeather.description,
             iconID: currentWeather.id
@@ -45,9 +69,9 @@ class App extends React.Component {
     <div className="App">
       <header className="App-header">
 
-        <i class={`owf owf-${this.state.iconID}`  + " owf-2x owf-pull-left owf-border"}></i>
+        <i class={`owf owf-${this.state.iconID}`+ " owf-3x owf-pull-left owf-border"}></i>
         <p>
-          {this.state.city}
+          {this.state.currentCity}
          <br/>
          {this.state.description + ' (' + this.state.main + ')'}
          </p>
