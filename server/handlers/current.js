@@ -1,12 +1,17 @@
 let {currentWeatherByCity} = require('../actions/current')
 let {locationCityByIP} = require('../actions/locations')
 
+function formatWeatherResponse(rawResponse) {
+   let {weather, name} = rawResponse;
+   return {weather, city: name};
+}
+
 
 async function currentWeatherGet (req, res) {
    try {
       let city = req.params.city; 
       let currentResponse = await currentWeatherByCity(city)
-      res.send(currentResponse);   
+      res.send(formatWeatherResponse(currentResponse));   
    }
    catch(err){
       return res.status(503).send({
