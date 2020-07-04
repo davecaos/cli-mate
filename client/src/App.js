@@ -21,13 +21,15 @@ class App extends React.Component {
       .then((res) => res.data)
       .then(
         (data) => {
-          let currentWeather = data.weather;
+          let current = data;
+
+          console.log('currentWeather', current)
           this.setState({
             isLoaded: true,
             currentCity: data.city,
-            main: currentWeather.main,
-            description: currentWeather.description,
-            iconID: currentWeather.id,
+            main: current.weather.main,
+            description: current.weather.description,
+            iconID: current.weather.iconID,
           });
         },
 
@@ -42,11 +44,11 @@ class App extends React.Component {
     API.get("/forecast")
       .then((res) => res.data)
       .then(
-        (data) => {
-          console.log(data)
-          let hour = new Date(data[0].dt_txt).getHours() 
-          let forecastFiltered =  data.filter(forecast => (new Date(forecast.dt_txt).getHours() ) ==  hour)
-          let lastForecastAvailable = data[data.length -1]
+        (result) => {
+          let forecast = result.forecast
+          let hour = new Date(forecast[0].weather.dt_txt).getHours() 
+          let forecastFiltered =  forecast.filter(forecast => (new Date(forecast.weather.dt_txt).getHours() ) == hour) || [];
+          let lastForecastAvailable = forecast[forecast.length -1]
           forecastFiltered.push(lastForecastAvailable)
           forecastFiltered.map(x => console.log(x))
           this.setState({
@@ -69,7 +71,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <i class={`owf owf-${this.state.iconID} owf-1x owf-pull-left owf-border`}/>
+        <br />
+          <i class={"owf owf-" +this.state.iconID+" owf-1x owf-pull-left owf-border"}/>
           <p>
             {this.state.currentCity}
             <br />
@@ -80,7 +83,7 @@ class App extends React.Component {
           <br />
           {this.state.currentforecast.map((forecast) => (
             <Weather
-              id={forecast.weather.id}
+              id={forecast.weather.iconID}
               main={forecast.weather.main}
               temp={forecast.weather.temp.toFixed(1)}
             />
