@@ -1,6 +1,6 @@
 const axios = require("axios");
 const Forecast = require("../entities/forecast");
-const {forecastOpenWeatherAPI_URL} = require('../entities/url')
+const {forecastOpenWeatherAPI_URL} = require('../entities/urls')
 
 function formatForecastResponse(rawResponse) {
   let forecastResponse = rawResponse.list;
@@ -13,9 +13,9 @@ async function forecastWeatherByCity(city) {
     .then(function (response) {
       return formatForecastResponse(response.data);
     })
-    .catch(function (err) {
-      console.error(err);
-    });
+    .catch(function(error) {
+      throw error;
+   });
 }
 
 module.exports = {

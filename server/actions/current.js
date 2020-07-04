@@ -1,5 +1,5 @@
 const axios = require('axios');
-const {currentOpenWeatherAPI_URL} = require('../entities/url')
+const {currentOpenWeatherAPI_URL} = require('../entities/urls')
 const  Weather = require('../entities/weather')
 
 async function currentWeatherByCity(city) {
@@ -8,7 +8,7 @@ async function currentWeatherByCity(city) {
                 return new Weather(response.data) ;
             })
             .catch(function(err) {
-                console.error(err);
+               throw err;
             });
 }
 

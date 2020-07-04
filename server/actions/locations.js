@@ -1,23 +1,12 @@
 const axios = require('axios');
-
-const localhostIP4 = '127.0.0.1';
-const localhostIP6 = "::1";
-const isLocalhost = (ip) => (ip == localhostIP4 || ip == localhostIP6);
-
-function buildIpApiUrl(ip) {
-
-    if( isLocalhost(ip) ){
-        return 'https://ipapi.co/json';
-    }
-    return 'https://ipapi.co/'+ ip +'/json';
-}
+const {locationAPI_URL} = require('../entities/urls')
 
 async function locationCityByIP(ip) {
-    let url = buildIpApiUrl(ip)
+    let url = locationAPI_URL(ip)
     return axios.get(url)
                 .then(function(response) {
                     let city = response.data.city;
-                    return {city};
+                    return city;
                 })
                 .catch(function (error) {
                     throw error;
