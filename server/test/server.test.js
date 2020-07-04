@@ -1,6 +1,7 @@
 const request = require("supertest");
 const { app } = require("../server");
 const sampleCity = "Buenos Aires";
+const falseCity = "Qwerty Uiop";
 
 const checkWeatherEntity = (weatherResponse) => {
   let weatherProps = ["main", "description", "icon", "temp", "iconID"];
@@ -35,6 +36,11 @@ test("Current local weather OK", async () => {
   checkWeatherEntity(weatherResponse);
 });
 
+test("Current local weather by false city Error 404", async () => {
+  const response = await request(app).get("/v1/current/" + falseCity);
+  expect(response.statusCode).toBe(404);
+});
+
 test("Current weather by city OK", async () => {
   const response = await request(app).get("/v1/current/" + sampleCity);
   expect(response.statusCode).toBe(200);
@@ -50,4 +56,9 @@ test("local forecast OK", async () => {
 test("forecast weather by city OK", async () => {
   const response = await request(app).get("/v1/forecast/" + sampleCity);
   expect(response.statusCode).toBe(200);
+});
+
+test("forecast weather by false city Error 404", async () => {
+  const response = await request(app).get("/v1/forecast/" + falseCity);
+  expect(response.statusCode).toBe(404);
 });
