@@ -7,7 +7,6 @@ const {forecastWeatherGet, forecastWeatherLocalGet } = require('./handlers/forec
 var router = express.Router();
 
 function setClientIpOnHeaderMiddleware(req, _res, next){ 
-  console.log('Headrs', req.headers)
   let ip =  req.headers['x-forwarded-for'] || 
             req.connection.remoteAddress || 
             req.socket.remoteAddress ||

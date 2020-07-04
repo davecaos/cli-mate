@@ -1,19 +1,11 @@
 const axios = require('axios');
-
-function buildIpApiUrl(city) {
-    const OpenWeatherAPIKey = 'be099e83205a778778834643d8310f58';
-    return 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + OpenWeatherAPIKey;
-}
-
-function formatWeatherresponse(rawResponse) {
-    let {weather, name} = rawResponse;
-    return {weather, city: name};
-}
+const {currentOpenWeatherAPI_URL} = require('../entities/url')
+const  Weather = require('../entities/weather')
 
 async function currentWeatherByCity(city) {
-    return axios.get(buildIpApiUrl(city))
+    return axios.get(currentOpenWeatherAPI_URL(city))
             .then(function(response) {
-                return formatWeatherresponse(response.data) ;
+                return new Weather(response.data) ;
             })
             .catch(function(err) {
                 console.error(err);
