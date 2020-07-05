@@ -1,5 +1,5 @@
-let { forecastWeatherByCity } = require("../actions/forecast");
-let { locationCityByIP } = require("../actions/locations");
+const { forecastWeatherByCity } = require("../actions/forecast");
+const { locationCityByIP } = require("../actions/locations");
 
 async function forecastWeatherGet(req, res) {
   try {

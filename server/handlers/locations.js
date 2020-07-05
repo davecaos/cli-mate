@@ -1,4 +1,4 @@
-let { locationCityByIP } = require("../actions/locations");
+const { locationCityByIP } = require("../actions/locations");
 
 async function locationGet(req, res) {
   let ip = req.headers.ClimateClientIP;

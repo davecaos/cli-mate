@@ -1,5 +1,5 @@
-let { currentWeatherByCity } = require("../actions/current");
-let { locationCityByIP } = require("../actions/locations");
+const { currentWeatherByCity } = require("../actions/current");
+const { locationCityByIP } = require("../actions/locations");
 
 async function currentWeatherGet(req, res) {
   try {

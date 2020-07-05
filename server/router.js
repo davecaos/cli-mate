@@ -4,7 +4,7 @@ const locationGet = require('./handlers/locations').location
 const {currentWeatherLocalGet, currentWeatherGet} = require('./handlers/current')
 const {forecastWeatherGet, forecastWeatherLocalGet } = require('./handlers/forecast')
 
-var router = express.Router();
+const router = express.Router();
 
 function setClientIpOnHeaderMiddleware(req, _res, next){ 
   let ip =  req.headers['x-forwarded-for'] || 
