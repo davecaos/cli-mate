@@ -1,5 +1,5 @@
 # cli-mate
-
+![image](https://user-images.githubusercontent.com/6124495/86617989-7fe1ff00-bf8e-11ea-9e90-ef4f28433a60.png)
 ## Server
 - Check the [Readme.md file](https://github.com/davecaos/cli-mate/blob/master/server/README.md) at the [/server folder](https://github.com/davecaos/cli-mate/blob/master/server/)
 
