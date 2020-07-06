@@ -4,6 +4,8 @@
 ## Available Scripts
 
 In the project directory, you can run:
+### First at all `yarn install`
+Install all the app dependecies in the development mode.<br />
 
 ### `yarn start`
 
