@@ -7,7 +7,7 @@ async function currentWeatherGet(req, res) {
     let currentResponse = await currentWeatherByCity(city);
     res.send(currentResponse);
   } catch (error) {
-    if (error.response.status == 404) {
+    if (error.response.status === 404) {
       return res.status(404).send({
         message: "City is not found",
       });

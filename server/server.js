@@ -1,12 +1,12 @@
 const express = require('express');
 const router = require('./router');
-const port = 3000;
+const port = 1337;
 
 app = express();
 
 app.use(express.static('public'));
 
-app.get('/status',  (req, res) => res.send({ status: 'ok' }))
+app.get('/status',  (_req, res) => res.send({ status: 'ok' }))
 
 app.use('/v1', router)
 
