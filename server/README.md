@@ -1,4 +1,4 @@
-# Cli-Mate Client
+# Cli-Mate Server
 ![ramiel gif](https://user-images.githubusercontent.com/6124495/86564737-1259b280-bf3d-11ea-93ea-8b5d6673b7af.gif)
 
 ## Available Scripts
