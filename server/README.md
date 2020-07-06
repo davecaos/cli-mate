@@ -1,4 +1,5 @@
-#Cli-Mate Client
+# Cli-Mate Client
+![ramiel gif](https://user-images.githubusercontent.com/6124495/86564737-1259b280-bf3d-11ea-93ea-8b5d6673b7af.gif)
 
 ## Server
 - start the server in development mode with /server with nodemon server.js
