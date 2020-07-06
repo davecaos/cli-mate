@@ -1,4 +1,5 @@
-#Cli-Mate Client
+# Cli-Mate Client
+![BlackandwhiteScientificElkhound-size_restricted](https://user-images.githubusercontent.com/6124495/86565151-b2afd700-bf3d-11ea-86ea-538b5a1fb465.gif)
 
 ## Available Scripts
 

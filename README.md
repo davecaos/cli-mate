@@ -1,10 +1,10 @@
 # cli-mate
 
 ## Server
-- start the server in development mode with /server with nodemon server.js
+- Check the [Readme.md file](https://github.com/davecaos/cli-mate/blob/master/server/README.md) at the [/server folder](https://github.com/davecaos/cli-mate/blob/master/server/)
 
 ## Client
-- start the client in development mode with /client folder with yarn start
+- Check the [Readme.md file](https://github.com/davecaos/cli-mate/blob/master/client/README.md) at the [/client folder](https://github.com/davecaos/cli-mate/blob/master/client)
 
 ![image](https://user-images.githubusercontent.com/6124495/86564324-6912bc80-bf3c-11ea-8733-157739b73d5e.png)
 
