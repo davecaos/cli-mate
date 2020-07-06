@@ -2,6 +2,7 @@ import React from "react";
 
 import API from "./api";
 import "./App.css";
+import Loader from "./Components/Loader";
 import Weather from "./Components/Weather";
 import Forecast from "./Components/Forecast";
 import "react-bulma-components/dist/react-bulma-components.min.css";
@@ -16,9 +17,9 @@ class App extends React.Component {
       isLoaded: false,
       currentCity: "",
       temp: 0,
-      currentforecast: [],
       inputForecasts: [],
       inputCity: "",
+      inputCityCounter: 0
     };
   }
 
@@ -47,6 +48,7 @@ class App extends React.Component {
         (data) => {
           let current = data.weather;
           this.setState({
+            isLoaded: true,
             main: current.main,
             temp: current.temp.toFixed(1),
             description: current.description,
@@ -61,76 +63,37 @@ class App extends React.Component {
           });
         }
       );
-
-    API.get("/forecast")
-      .then((res) => res.data)
-      .then(
-        (result) => {
-          let forecast = result.forecast;
-          let hour = new Date(forecast[0].weather.dt_txt).getHours();
-          let forecastFiltered =
-            forecast.filter(
-              (forecast) => new Date(forecast.weather.dt_txt).getHours() == hour
-            ) || [];
-          let lastForecastAvailable = forecast[forecast.length - 1];
-          forecastFiltered.push(lastForecastAvailable);
-          forecastFiltered.map((x) => console.log(x));
-
-          this.setState({
-            isLoaded: true,
-            //currentCity: data.city,
-            currentforecast: forecastFiltered,
-          });
-        },
-
-        (error) => {
-          this.setState({
-            isLoaded: false,
-            error,
-          });
-        }
-      );
   }
 
   handleInputChange = (event) => {
     this.setState({ inputCity: event.target.value });
   };
 
+  handleDeleteForecastClick = (cityToDelete) => {
+    let clonedForecasts = this.state.inputForecasts.slice(0);
+    let updatedForecasts = clonedForecasts.filter( city => city !== cityToDelete);
+    this.setState({
+      inputForecasts: updatedForecasts,
+      inputCityCounter: this.state.inputCityCounter - 1,
+    });
+  }
+
   handleAddCityClick = (event) => {
     event.preventDefault();
-    API.get("/forecast/" + this.state.inputCity)
-      .then((res) => res.data)
-      .then(
-        (result) => {
-          let forecast = result.forecast;
-          let hour = new Date(forecast[0].weather.dt_txt).getHours();
-          let forecastFiltered =
-            forecast.filter(
-              (forecast) => new Date(forecast.weather.dt_txt).getHours() == hour
-            ) || [];
-          let lastForecastAvailable = forecast[forecast.length - 1];
-          forecastFiltered.push(lastForecastAvailable);
-          forecastFiltered.map((x) => console.log(x));
-          let clonedForecasts = this.state.inputForecasts.slice(0);
-          clonedForecasts.push({
-            city: this.state.inputCity,
-            forecast: forecastFiltered,
-          });
+    let isinputCityInvalid = ! this.state.inputCity
+    if(isinputCityInvalid) {
+      //do nothing
+      return;
+    }
 
-          this.setState({
-            //currentCity: data.city,
-            inputForecasts: clonedForecasts,
-            inputCity: "",
-          });
-        },
+    let clonedForecasts = this.state.inputForecasts.slice(0);
+    clonedForecasts.push(this.state.inputCity);
 
-        (error) => {
-          this.setState({
-            isLoaded: false,
-            error,
-          });
-        }
-      );
+    this.setState({
+      inputForecasts: clonedForecasts,
+      inputCityCounter: this.state.inputCityCounter + 1,
+      inputCity: "",
+    });
   };
 
   render() {
@@ -138,10 +101,11 @@ class App extends React.Component {
       return (
         <div>
           <div className="App">
-            <br />
-
             <Hero>
               <Section>
+              <Columns>
+              <div>{"Current weather in " + this.state.currentCity}</div>
+              </Columns>
                 <Columns>
                   <Columns.Column>
                     <Weather
@@ -152,26 +116,26 @@ class App extends React.Component {
                     />
                   </Columns.Column>
                 </Columns>
+                <hr></hr>
                 <Columns.Column>
                   <Forecast
                     city={this.state.currentCity}
-                    forecast={this.state.currentforecast}
                   />
                 </Columns.Column>
 
-                {this.state.inputForecasts.map((item) => (
+                {this.state.inputForecasts.map((city) => (
                   <Columns.Column>
-                    <Forecast city={item.city} forecast={item.forecast} />
+                    <Forecast city={city} deletable={true} handleDeleteForecastClick={(city) => this.handleDeleteForecastClick(city)}/>
                   </Columns.Column>
                 ))}
                 <Columns>
                   <Columns.Column>
+                   <p>{`Enter up to ${5 - this.state.inputCityCounter} Cities name like London, Santa Fe, Berlin ...  to get next 5 days forecast!`}</p>
                     <input
                       value={this.state.inputCity}
-                      placeholder={"City to get next 5 days forecast"}
                       onChange={this.handleInputChange}
                     />
-                    <Button onClick={this.handleAddCityClick}>Add</Button>
+                    {this.state.inputCityCounter < 5 && <Button onClick={this.handleAddCityClick}>Add</Button>}
                   </Columns.Column>
                 </Columns>
               </Section>
@@ -183,7 +147,7 @@ class App extends React.Component {
       return (
         <div>
           <header className="App">
-            <p>Loading ...</p>
+            <Loader />
           </header>
         </div>
       );
