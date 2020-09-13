@@ -1,10 +1,14 @@
 "use strict";
 
-module.exports = class Weather {
-  constructor(weatherFieldFromOWM) {
-    this.weather = weatherFieldFromOWM.weather[0];
-    this.weather.temp = weatherFieldFromOWM.main.temp;
-    this.weather.dt_txt = weatherFieldFromOWM.dt_txt;
-    this.weather.iconID = this.weather.id;
-  }
+const Weather = (mainWeatherFromOWM, temp, dt, id) => {
+  let weather = { ...mainWeatherFromOWM };
+  weather['temp'] = temp;
+  weather['dt_txt'] = dt;
+  weather['iconID'] = id;
+
+  return {weather};
+};
+
+module.exports = {
+  Weather
 };
