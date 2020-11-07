@@ -1,24 +1,15 @@
-"use strict";
-const OpenWeatherAPIKey = "be099e83205a778778834643d8310f58";
+const config = require("config");
 
-function baseOpenWeatherAPI_URL(type, city) {
-  return (
-    "http://api.openweathermap.org/data/2.5/" +
-    type +
-    "?q=" +
-    city +
-    "&units=metric" +
-    "&appid=" +
-    OpenWeatherAPIKey
-  );
+const openWeatherAPIKey = config.get("open-weather-api.apiKey");
+
+function currentOpenWeatherUrlBy(city) {
+  const openWeatherAPIURL = config.get("open-weather-api.weather");
+  return `${openWeatherAPIURL}?q=${city}&units=metric&appid=${openWeatherAPIKey}`;
 }
 
-function currentOpenWeatherAPI_URL(city) {
-  return baseOpenWeatherAPI_URL("weather", city);
-}
-
-function forecastOpenWeatherAPI_URL(city) {
-  return baseOpenWeatherAPI_URL("forecast", city);
+function forecastOpenWeatherUrlBy(city) {
+  const openWeatherAPIURL = config.get("open-weather-api.forecast");
+  return `${openWeatherAPIURL}?q=${city}&units=metric&appid=${openWeatherAPIKey}`;
 }
 
 function locationAPI_URL(ip) {
@@ -29,9 +20,11 @@ function locationAPI_URL(ip) {
   if (isLocalhost(ip)) {
     return "https://ipapi.co/json";
   }
-  return "https://ipapi.co/" + ip + "/json";
+  return `https://ipapi.co/${ip}/json`;
 }
 
-module.exports.locationAPI_URL = locationAPI_URL;
-module.exports.currentOpenWeatherAPI_URL = currentOpenWeatherAPI_URL;
-module.exports.forecastOpenWeatherAPI_URL = forecastOpenWeatherAPI_URL;
+module.exports = {
+  locationAPI_URL,
+  currentOpenWeatherUrlBy,
+  forecastOpenWeatherUrlBy,
+};

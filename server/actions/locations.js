@@ -1,21 +1,14 @@
-const axios = require('axios');
-const {locationAPI_URL} = require('../entities/urls')
+const axios = require("axios");
+const { locationAPI_URL } = require("../entities/urls");
 
 async function locationCityByIP(ip) {
-    let url = locationAPI_URL(ip)
-    return axios.get(url)
-                .then(function(response) {
-                    let city = response.data.city;
-                    return city;
-                })
-                .catch(function (error) {
-                    throw error;
-                });
+  const url = locationAPI_URL(ip);
+  const response = await axios.get(url);
+
+  let city = response.data.city;
+  return city;
 }
 
 module.exports = {
-    locationCityByIP: async (ip) => {
-        return await locationCityByIP(ip);
-    }
+  locationCityByIP
 };
-
