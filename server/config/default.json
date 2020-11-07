@@ -1,0 +1,11 @@
+{
+    "server": {
+      "port": 1337,
+      "killTimeout": 100
+    },
+    "open-weather-api": {
+        "weather": "http://api.openweathermap.org/data/2.5/weather",
+        "forecast": "http://api.openweathermap.org/data/2.5/forecast",
+        "apiKey": "be099e83205a778778834643d8310f58"
+    }
+}
