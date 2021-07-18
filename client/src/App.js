@@ -42,7 +42,7 @@ class App extends React.Component {
         }
       );
 
-    API.get("/current")
+    API.get("/current/")
       .then((res) => res.data)
       .then(
         (data) => {
@@ -52,7 +52,7 @@ class App extends React.Component {
             main: current.main,
             temp: current.temp.toFixed(1),
             description: current.description,
-            iconID: current.iconID,
+            iconID: current.id,
           });
         },
 
@@ -108,6 +108,7 @@ class App extends React.Component {
               </Columns>
                 <Columns>
                   <Columns.Column>
+                  {console.log('this.state.iconID',this.state.iconID)}
                     <Weather
                       size={5}
                       id={this.state.iconID}
