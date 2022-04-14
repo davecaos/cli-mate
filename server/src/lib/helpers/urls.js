@@ -1,9 +1,9 @@
 const config = require("config");
 
-const openWeatherAPIFreeKey = config.get("open-weather-api.apiKeyFree");
-const ipLocationAPIFreeKey = config.get("location-by-ip.apiKeyFree");
+const openWeatherAPIFreeKey = config.get("open-weather-api.apiFreeKey");
+const ipLocationAPIFreeKey = config.get("geolocation-api.apiFreeKey");
 
-const locationAPIURL = config.get("location-by-ip.url");
+const locationAPIURL = config.get("geolocation-api.url");
 
 function currentOpenWeatherUrlBy(city) {
   const openWeatherAPIURL = config.get("open-weather-api.weather");
@@ -23,7 +23,7 @@ const locationLocalhostAPI = () => {
   return `${locationAPIURL}/ipgeo?apiKey=${ipLocationAPIFreeKey}&fields=city`;
 }
 
-function locationAPI_URL(ip) {
+function locationAPI(ip) {
   const localhostIP4 = "127.0.0.1";
   const localhostIP6 = "::1";
   const isLocalhost = (ip) => ip === localhostIP4 || ip === localhostIP6;
@@ -32,7 +32,7 @@ function locationAPI_URL(ip) {
 }
 
 module.exports = {
-  locationAPI_URL,
+  locationAPI,
   currentOpenWeatherUrlBy,
   forecastOpenWeatherUrlBy,
 };

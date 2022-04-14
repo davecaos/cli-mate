@@ -4,23 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "mocha --recursive",
-    "coverage": "nyc npm test"
+    "start": "node src/server/index.js",
+    "test": "jest --runInBand --forceExit --no-cache",
+    "coverage": "nyc npm test",
+    "nodemon": "nodemon src/server/index.js",
+    "build": ". ./tag.sh && docker build . -t $PACKAGE_TAG"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
-    "chai": "^4.2.0",
-    "config": "^3.3.1",
-    "express": "^4.17.1",
-    "proxyquire": "^2.1.3",
-    "sinon": "^9.0.2"
+    "config": "^3.3.7",
+    "express": "^4.17.3"
   },
   "devDependencies": {
-    "mocha": "^8.1.1",
-    "nodemon": "^2.0.4",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
     "nyc": "^15.1.0",
     "supertest": "^4.0.2"
   },

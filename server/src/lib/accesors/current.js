@@ -1,8 +1,8 @@
 const axios = require("axios");
-const { currentOpenWeatherUrlBy } = require("../entities/urls");
-const { Weather } = require("../entities/weather");
+const { currentOpenWeatherUrlBy } = require("../helpers/urls");
+const { Weather } = require("../../entities/weather");
 
-const currentWeatherByCity = async(city) => { 
+const fetchCurrentWeatherByCity = async(city) => { 
   const response = await axios.get(currentOpenWeatherUrlBy(city));
 
   const mainWeatherFromOWM = response.data.weather[0];
@@ -13,5 +13,5 @@ const currentWeatherByCity = async(city) => {
 }
 
 module.exports = {
-  currentWeatherByCity,
+  fetchCurrentWeatherByCity,
 };

@@ -1,5 +1,4 @@
-const chai = require("chai");
-const { Forecast } = require("../../entities/forecast");
+const { Forecast } = require("../../src/entities/forecast");
 
 const wheaterInnerApiResponse = {
   dt: 1597104000,

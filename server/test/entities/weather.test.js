@@ -1,7 +1,4 @@
-const chai = require("chai");
-const proxyquire = require("proxyquire");
-const sinon = require("sinon");
-const { Weather } = require("../../entities/weather");
+const { Weather } = require("../../src/entities/weather");
 
 const weatherData = {
   id: 801,
