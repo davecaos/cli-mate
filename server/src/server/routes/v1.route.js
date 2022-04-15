@@ -1,8 +1,8 @@
 const express = require('express');
 const {setClientIpMiddleware} = require('../middleware');
-const {getLocationController} = require('../controllers/locations');
-const {getCurrentWeatherController, getCurrentLocalWeatherController} = require('../controllers/current');
-const {getForecastWeatherController, getForecastLocalWeatherController } = require('../controllers/forecast');
+const {getLocationController} = require('../controllers/locations.controller');
+const {getCurrentWeatherController, getCurrentLocalWeatherController} = require('../controllers/current.controller');
+const {getForecastWeatherController, getForecastLocalWeatherController } = require('../controllers/forecast.controller');
 
 const router = express.Router();
 

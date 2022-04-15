@@ -1,10 +1,10 @@
 const axios = require("axios");
-const {locationAPI } = require("../helpers/urls");
+const {locationUrlBuilder } = require("../helpers/urls.helper");
 
 const trimPostfixCityName = (city) => city.endsWith(' City')? city.slice(0, city.lastIndexOf(' City')) : city
 
 async function fetchLocationCityByIP(ip) {
-  const url = locationAPI(ip);
+  const url = locationUrlBuilder(ip);
   const response = await axios.get(url);
   let city = response.data.city;
   city = trimPostfixCityName(city)

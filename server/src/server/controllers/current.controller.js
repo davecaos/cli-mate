@@ -1,4 +1,4 @@
-const { getCurrentWeatherService, getCurrentLocalWeatherByIpService } = require("../../services/current");
+const { getCurrentWeatherService, getCurrentLocalWeatherByIpService } = require("../../services/current.service");
 
 async function getCurrentWeatherController(req, res) {
   try {

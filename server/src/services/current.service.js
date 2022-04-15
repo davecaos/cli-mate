@@ -1,5 +1,5 @@
-const { fetchCurrentWeatherByCity } = require("../lib/accesors/current");
-const { fetchLocationCityByIP } = require("../lib/accesors/locations");
+const { fetchCurrentWeatherByCity } = require("../lib/accesors/current.accesor");
+const { fetchLocationCityByIP } = require("../lib/accesors/locations.accesor");
 
 async function getCurrentWeatherService(city) {
   return await fetchCurrentWeatherByCity(city);

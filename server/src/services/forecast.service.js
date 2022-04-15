@@ -1,5 +1,5 @@
-const { fetchForecastWeatherByCity } = require("../lib/accesors/forecast");
-const { fetchLocationCityByIP } = require("../lib/accesors/locations");
+const { fetchForecastWeatherByCity } = require("../lib/accesors/forecast.accesor");
+const { fetchLocationCityByIP } = require("../lib/accesors/locations.accesor");
 
 async function getForecastWeatherService(city) {
   return await fetchForecastWeatherByCity(city);
