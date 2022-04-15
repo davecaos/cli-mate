@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node src/server/index.js",
     "test": "jest --runInBand --forceExit --no-cache",
+    "test:coverage": "jest --coverage --runInBand --forceExit --no-cache",
     "coverage": "nyc npm test",
     "nodemon": "nodemon src/server/index.js",
     "build": ". ./tag.sh && docker build . -t $PACKAGE_TAG"
@@ -14,13 +15,12 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
-    "config": "^3.3.7",
+    "dotenv": "^16.0.0",
     "express": "^4.17.3"
   },
   "devDependencies": {
     "jest": "^27.5.1",
     "nodemon": "^2.0.15",
-    "nyc": "^15.1.0",
     "supertest": "^4.0.2"
   },
   "jest": {

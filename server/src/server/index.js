@@ -1,12 +1,13 @@
 const http = require("http");
 const express = require("express");
-const config = require("config");
+// Config
+const config = require("../../config");
 
 const { errorHandler } = require("./middleware");
 const events = require("./events");
 const { healthRouter, v1Router } = require("./routes");
 
-const { port } = config.get("server");
+const { port } = config.server;
 
 app = express();
 const server = http.createServer(app);
@@ -27,9 +28,5 @@ process.on("SIGINT", () => events.onProcessKill(server));
 process.on("SIGTERM", () => events.onProcessKill(server));
 process.on("unhandledRejection", events.onException);
 process.on("uncaughtException", (err) => events.onException(err));
-/*
-const server = app.listen(port, function () {
-    console.log("Server is running on "+ port +" port");
-  });
-*/
+
 module.exports = { app, server };

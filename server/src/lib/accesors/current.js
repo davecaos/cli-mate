@@ -1,9 +1,9 @@
 const axios = require("axios");
-const { currentOpenWeatherUrlBy } = require("../helpers/urls");
+const { currentOpenWeatherUrlByCity } = require("../helpers/urls");
 const { Weather } = require("../../entities/weather");
 
 const fetchCurrentWeatherByCity = async(city) => { 
-  const response = await axios.get(currentOpenWeatherUrlBy(city));
+  const response = await axios.get(currentOpenWeatherUrlByCity(city));
 
   const mainWeatherFromOWM = response.data.weather[0];
   const temp = response.data.main.temp;

@@ -73,7 +73,7 @@ describe("forecast entity test", () => {
   it("test forecast constructor", () => {
     let response = Forecast(forecastApiResponse.list);
     response.forecast.map((weather) => {
-      chai.expect(weather).to.be.eql(weatherInnerResponseData);
+      expect(weather).toStrictEqual(weatherInnerResponseData);
     });
   });
 });

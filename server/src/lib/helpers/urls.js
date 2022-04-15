@@ -1,22 +1,23 @@
-const config = require("config");
+// Config
+const config = require('../../../config');
 
-const openWeatherAPIFreeKey = config.get("open-weather-api.apiFreeKey");
-const ipLocationAPIFreeKey = config.get("geolocation-api.apiFreeKey");
+const openWeatherAPIFreeKey = config.openWeatherApi.apiFreeKey;
+const ipLocationAPIFreeKey = config.geolocationApi.apiFreeKey;
 
-const locationAPIURL = config.get("geolocation-api.url");
+const locationAPIURL = config.geolocationApi.url;
 
-function currentOpenWeatherUrlBy(city) {
-  const openWeatherAPIURL = config.get("open-weather-api.weather");
+function currentOpenWeatherUrlByCity(city) {
+  const openWeatherAPIURL = config.openWeatherApi.weather;
   return `${openWeatherAPIURL}?q=${city}&units=metric&appid=${openWeatherAPIFreeKey}`;
 }
 
-function forecastOpenWeatherUrlBy(city) {
-  const openWeatherAPIURL = config.get("open-weather-api.forecast");
+function forecastOpenWeatherUrlByCity(city) {
+  const openWeatherAPIURL = config.openWeatherApi.forecast;
   return `${openWeatherAPIURL}?q=${city}&units=metric&appid=${openWeatherAPIFreeKey}`;
 }
 
 const locationByIpAPI = (ip) => {
-  return `${locationAPIURL}/ipgeo?apiKey=${ipLocationAPIFreeKey}&ip=${ip}&fields=city`;
+  return `${locationAPIURL}/ipgeo?apiKey=${ipLocationAPIFreeKey}&fields=city&ip=${ip}`;
 }
 
 const locationLocalhostAPI = () => {
@@ -33,6 +34,6 @@ function locationAPI(ip) {
 
 module.exports = {
   locationAPI,
-  currentOpenWeatherUrlBy,
-  forecastOpenWeatherUrlBy,
+  currentOpenWeatherUrlByCity,
+  forecastOpenWeatherUrlByCity,
 };

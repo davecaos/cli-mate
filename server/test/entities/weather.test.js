@@ -46,8 +46,6 @@ describe("weather entity test", () => {
     let expectedResponse = {
       weather: { ...weatherData, temp: weatherTemp, dt_txt, iconID },
     };
-    chai
-      .expect(Weather(mainWeatherFromOWM, temp, dt_txt, iconID))
-      .to.be.eql(expectedResponse);
+    expect(Weather(mainWeatherFromOWM, temp, dt_txt, iconID)).toStrictEqual(expectedResponse);
   });
 });

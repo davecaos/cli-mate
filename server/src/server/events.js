@@ -1,7 +1,7 @@
 const process = require("process");
-const config = require("config");
+const config = require('../../config');
 
-const { killTimeout } = config.get("server");
+const { killTimeout } = config.server;
 
 //On server internal error.
 const onServerError = () => console.log({ message: `Server error` });
