@@ -1,5 +1,4 @@
-const chai = require("chai");
-const { Forecast } = require("../../entities/forecast");
+const { Forecast } = require("../../src/entities/forecast");
 
 const wheaterInnerApiResponse = {
   dt: 1597104000,
@@ -74,7 +73,7 @@ describe("forecast entity test", () => {
   it("test forecast constructor", () => {
     let response = Forecast(forecastApiResponse.list);
     response.forecast.map((weather) => {
-      chai.expect(weather).to.be.eql(weatherInnerResponseData);
+      expect(weather).toStrictEqual(weatherInnerResponseData);
     });
   });
 });

@@ -1,7 +1,4 @@
-const chai = require("chai");
-const proxyquire = require("proxyquire");
-const sinon = require("sinon");
-const { Weather } = require("../../entities/weather");
+const { Weather } = require("../../src/entities/weather");
 
 const weatherData = {
   id: 801,
@@ -49,8 +46,6 @@ describe("weather entity test", () => {
     let expectedResponse = {
       weather: { ...weatherData, temp: weatherTemp, dt_txt, iconID },
     };
-    chai
-      .expect(Weather(mainWeatherFromOWM, temp, dt_txt, iconID))
-      .to.be.eql(expectedResponse);
+    expect(Weather(mainWeatherFromOWM, temp, dt_txt, iconID)).toStrictEqual(expectedResponse);
   });
 });

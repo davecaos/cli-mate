@@ -1,7 +1,7 @@
 import React from "react";
 import { Columns } from "react-bulma-components";
 
-const days = ["Sun", "Mon", "Tue", "We", "Thu", "Fri", "Sat"];
+const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 class Weather extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class Weather extends React.Component {
         <Columns>
           <div className={`owf owf-${this.props.id} owf-${this.props.size}x owf-pull-left owf-border`}/>
         </Columns>
-        <Columns>{this.props.temp + "°C "}</Columns>
+        <Columns>{this.props.temp + " °C "}</Columns>
         <Columns>{this.props.main}</Columns>
       </div>
     );
