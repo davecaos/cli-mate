@@ -1,9 +1,9 @@
 const config = {
-    "server": {
-      "port": 1337,
-      "killTimeout": 100
+    server: {
+      port: 1337,
+      killTimeout: 100
     },
-    "geolocationApi": {
+    geolocationApi: {
       url: "https://api.ipgeolocation.io",
       apiFreeKey: "c3721591c90343e98620ee239d607fcb"
     },

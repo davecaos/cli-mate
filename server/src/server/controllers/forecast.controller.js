@@ -1,4 +1,4 @@
-const { getForecastLocalWeatherByIpService, getForecastWeatherService } = require("../../services/forecast");
+const { getForecastLocalWeatherByIpService, getForecastWeatherService } = require("../../services/forecast.service");
 
 async function getForecastWeatherController(req, res) {
   try {
@@ -6,7 +6,7 @@ async function getForecastWeatherController(req, res) {
     let forecastResponse = await getForecastWeatherService(city);
     return res.status(200).json(forecastResponse);
   } catch (error) {
-    if (error.response.status === 404) {
+    if (error?.response?.status === 404) {
       return res.status(404).send({
         message: "City is not found",
       });

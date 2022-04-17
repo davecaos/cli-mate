@@ -1,4 +1,4 @@
-const { getLocationService } = require("../../services/locations");
+const { getLocationService } = require("../../services/locations.service");
 
 async function getLocationController(req, res) {
   let ip = req.headers.ClimateClientIP;
