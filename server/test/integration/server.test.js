@@ -1,5 +1,5 @@
-/*const request = require("supertest");
-const { app } = require("../server");
+const request = require("supertest");
+const { app } = require("../../src/server/index");
 const sampleCity = "Buenos Aires";
 const falseCity = "Qwerty Uiop";
 
@@ -16,12 +16,12 @@ const checkForecastEntity = (forecastResponse) => {
   expect(forecastResponse.forecast.length).toEqual(40);
   forecastResponse.forecast.forEach((weather) => checkWeatherEntity(weather));
 };
-test("Status OK", async () => {
-  const response = await request(app).get("/status");
+test("should health endpoint return 200 OK", async () => {
+  const response = await request(app).get("/health");
   expect(response.statusCode).toBe(200);
 });
 
-test("Location OK", async () => {
+/*test("Location OK", async () => {
   const response = await request(app).get("/v1/location");
   expect(response.statusCode).toBe(200);
   expect(response.body.city).toBe(sampleCity);

@@ -6,7 +6,7 @@ async function getCurrentWeatherController(req, res) {
     let currentResponse = await getCurrentWeatherService(city);
     return res.status(200).json(currentResponse);
   } catch (error) {
-    if (error.response.status === 404) {
+    if (error?.response?.status === 404) {
       return res.status(404).send({
         message: "City is not found",
       });

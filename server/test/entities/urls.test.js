@@ -42,7 +42,7 @@ describe("urls helpers tests", () => {
   describe("currentOpenWeatherUrlBuilder tests", () => {
     const city = 'Sao Paulo'
     const weatherApiUrl = `${fakeopenWeatherApi}?q=${city}&units=metric&appid=${fakeApiKey}`;
-    it("should currentOpenWeatherUrlBuilder called with Localhost ip return expected url OK", async () => {
+    it("should currentOpenWeatherUrlBuilder built the expected url OK", async () => {
       const result = currentOpenWeatherUrlBuilder(city);
       expect(result).toStrictEqual(weatherApiUrl);
     });
@@ -51,7 +51,7 @@ describe("urls helpers tests", () => {
   describe("forecastOpenWeatherUrlBuilder tests", () => {
     const city = 'Durazno'
     const forecastrApiUrl = `${fakeopenForecastApi}?q=${city}&units=metric&appid=${fakeApiKey}`;
-    it("should forecastOpenWeatherUrlBuilder called with a Localhost ip return expected url OK", async () => {
+    it("should forecastOpenWeatherUrlBuilder built the expected url OK", async () => {
       const result = forecastOpenWeatherUrlBuilder(city);
       expect(result).toStrictEqual(forecastrApiUrl);
     });
