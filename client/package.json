@@ -10,10 +10,10 @@
     "axios": "^0.19.2",
     "node-sass": "^4.14.1",
     "open-weather-icons": "^0.0.8",
-    "react": "^16.13.1",
+    "react": "^18.0.0",
     "react-bulma-components": "^3.4.0",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-dom": "^18.0.0",
+    "react-scripts": "4.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,6 +37,7 @@
     ]
   },
   "devDependencies": {
-    "prettier": "2.0.5"
+    "prettier": "2.0.5",
+    "yarn-upgrade-all": "^0.7.1"
   }
 }

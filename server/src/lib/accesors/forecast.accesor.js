@@ -1,5 +1,4 @@
 const axios = require("axios");
-const { Forecast } = require("../../entities/forecast");
 const { forecastOpenWeatherUrlBuilder } = require("../helpers/urls.helper");
 
 const fetchForecastWeatherByCity = async(city) => {
