@@ -5,7 +5,7 @@ const { forecastOpenWeatherUrlBuilder } = require("../helpers/urls.helper");
 const fetchForecastWeatherByCity = async(city) => {
   const url = forecastOpenWeatherUrlBuilder(city);
   const response = await axios.get(url);
-  return Forecast(response.data.list);
+  return response.data;
 }
 
 module.exports = {

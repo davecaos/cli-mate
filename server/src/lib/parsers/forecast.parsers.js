@@ -1,8 +1,8 @@
 "use strict";
-const { Weather } = require("./weather");
+const { Weather } = require("./weather.parsers");
 
-const Forecast = (forecastFieldsFromOWM) => {
-  let forecast = forecastFieldsFromOWM.map((weatherRaw) => {
+const Forecast = (forecastFromOWM) => {
+  let forecast = forecastFromOWM.list.map((weatherRaw) => {
     let innerWeather = weatherRaw.weather[0];
     return Weather(
       innerWeather,
